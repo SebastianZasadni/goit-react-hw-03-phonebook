@@ -1,5 +1,2 @@
-import { Phonebook } from "./phonebook/Phonebook";
-
-export const App = () => {
-<Phonebook />
-};
+import { Phonebook } from './phonebook/Phonebook.jsx';
+export const App = () => <Phonebook />;

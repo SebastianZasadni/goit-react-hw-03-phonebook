@@ -6,12 +6,7 @@ import { ContactsList } from './contactslist/ContactsList';
 import { Filter } from './filter/Filter';
 export class Phonebook extends Component {
   static defaultProps = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
+    contacts: [],
     name: '',
     number: null,
     filter: '',
@@ -66,6 +61,14 @@ export class Phonebook extends Component {
       contacts: listWithoutDeletedContact,
     });
   };
+  componentDidMount() {
+    localStorage.friends === undefined
+      ? this.setState({ contacts: [] })
+      : this.setState({ contacts: JSON.parse(localStorage.friends) });
+  }
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    localStorage.friends = JSON.stringify(this.state.contacts);
+  }
 
   render() {
     const filteredContacts = this.state.contacts.filter(c =>
