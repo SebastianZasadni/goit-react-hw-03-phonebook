@@ -85,7 +85,7 @@ export class Phonebook extends Component {
 
     return (
       <div className="section-phonebook">
-        <h1>Phonebookd</h1>
+        <h1>Phonebook</h1>
         <ContactsForm handleSubmit={this.addContact} />
         <Filter filtr={this.addFilter} />
         <ContactsList contacts={contacts} />
