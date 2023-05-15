@@ -67,7 +67,7 @@ export class Phonebook extends Component {
       ? this.setState({ contacts: [] })
       : this.setState({ contacts: JSON.parse(localStorage.friends) });
   }
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate() {
     localStorage.friends = JSON.stringify(this.state.contacts);
   }
 
@@ -101,10 +101,9 @@ Phonebook.propTypes = {
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       number: PropTypes.string.isRequired,
-        })
+    })
   ),
   name: PropTypes.string,
   number: PropTypes.string,
   filter: PropTypes.string,
-  }
-  
+};

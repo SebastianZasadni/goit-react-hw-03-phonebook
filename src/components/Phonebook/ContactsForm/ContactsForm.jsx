@@ -1,4 +1,6 @@
+import PropTypes from 'prop-types';
 import css from '../Phonebook.module.css';
+
 export const ContactsForm = ({ handleSubmit }) => {
   return (
     <div className={css.sectionaddcontacts}>
@@ -25,4 +27,6 @@ export const ContactsForm = ({ handleSubmit }) => {
   );
 };
 
-//
+ContactsForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+}
