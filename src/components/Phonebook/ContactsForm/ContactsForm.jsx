@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import css from '../Phonebook.module.css';
 
-export const ContactsForm = ({ handleSubmit }) => {
+export const ContactsForm = ({ onSubmit }) => {
   return (
     <div className={css.sectionaddcontacts}>
-      <form className={css.contactsform} onSubmit={handleSubmit}>
+      <form className={css.contactsform} onSubmit={onSubmit}>
         Name
         <input
           type="text"
@@ -28,5 +28,5 @@ export const ContactsForm = ({ handleSubmit }) => {
 };
 
 ContactsForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 }

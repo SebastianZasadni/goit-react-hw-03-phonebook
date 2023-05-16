@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 
-export const Filter = ({ addFilter }) => {
-  return <input type="text" name="filter" onChange={addFilter}></input>;
+export const Filter = ({ onFilter }) => {
+  return <input type="text" name="filter" onChange={onFilter}></input>;
 };
 
 Filter.propTypes = {
-  addFilter: PropTypes.func,
+  onFilter: PropTypes.func,
 }
