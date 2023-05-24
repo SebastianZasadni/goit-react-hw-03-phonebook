@@ -2,18 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import css from './Phonebook.module.css';
-import { ContactsForm } from './ContactsForm/ContactsForm';
-import { ContactsList } from './ContactsList/ContactsList';
-import { Filter } from './Filter/Filter';
+import { ContactsForm } from '../ContactsForm/ContactsForm';
+import { ContactsList } from '../ContactsList/ContactsList';
+import { Filter } from '../Filter/Filter';
 
 export class Phonebook extends Component {
   static defaultProps = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
+    contacts: [],
     name: '',
     number: null,
     filter: '',
@@ -25,6 +20,15 @@ export class Phonebook extends Component {
     number: this.props.number,
     filter: this.props.filter,
   };
+
+  componentDidMount() {
+    localStorage.getItem('friends')
+      ? this.setState({ contacts: JSON.parse(localStorage.getItem('friends')) })
+      : this.setState({ contacts: [] });
+  }
+  componentDidUpdate() {
+    localStorage.setItem('friends', JSON.stringify(this.state.contacts));
+  }
 
   handleSubmit = evt => {
     evt.preventDefault();
@@ -82,21 +86,29 @@ export class Phonebook extends Component {
       </li>
     ));
   };
-  componentDidMount() {
-    localStorage.friends
-      ? this.setState({ contacts: JSON.parse(localStorage.friends) })
-      : this.setState({ contacts: [] });
-  }
-  componentDidUpdate() {
-    localStorage.friends = JSON.stringify(this.state.contacts);
-  }
+
+  showContacts = () => {
+    const { contacts } = this.state;
+    return contacts.map(c => (
+      <li key={c.id}>
+        {c.name}: {c.number}
+        <button type="submit" onClick={() => this.deleteContact(c.id)}>
+          Delete
+        </button>
+      </li>
+    ));
+  };
+
   render() {
+    const { filter } = this.state;
     return (
-      <div className={css.sectionphonebook}>
+      <div className={css.sectionPhonebook}>
         <h1>Phonebook</h1>
         <ContactsForm onSubmit={this.handleSubmit} />
         <Filter onFilter={this.handleFilter} />
-        <ContactsList contacts={this.filtrContacts()} />
+        <ContactsList
+          contacts={filter ? this.filtrContacts() : this.showContacts()}
+        />
       </div>
     );
   }

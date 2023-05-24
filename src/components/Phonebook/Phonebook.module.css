@@ -1,10 +1,10 @@
-.sectionphonebook {
+.sectionPhonebook {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
-.contactsform {
+.contactsForm {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -13,10 +13,10 @@
   padding: 20px;
   margin: 10px;
 }
-.sectioncontacts{
+.sectionContacts{
     text-align: center;
 }
-.contactslist {
+.contactsList {
   margin: 0;
   padding: 0;
 }
